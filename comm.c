@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <sys/un.h>
 #include "comm.h"
+#include "util.h"
 
 int g_sfd;
 
@@ -156,6 +157,7 @@ int get_connection(char * user_id, int pipe_child_writing_to_user[2], int pipe_c
 
 		if(read(cfd, user_id, MAX_USER_ID) == -1) {
 			perror("Failed to get user id");
+			print_prompt("admin");
 			return -1;
 		}
 		close(cfd);
